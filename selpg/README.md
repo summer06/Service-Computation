@@ -73,3 +73,112 @@ https://golang.org/pkg/os/exec/
 
 ---
 ### Test Result
+**The input file is from https://github.com/smallGum/service-computing/tree/master/selpg**
+
+1.select specific pages
+
+```
+$ ./selpg -s 1 -e 1 input_file
+No. 1 line of No.1 page
+No. 2 line of No.1 page
+No. 3 line of No.1 page
+No. 4 line of No.1 page
+No. 5 line of No.1 page
+No. 6 line of No.1 page
+No. 7 line of No.1 page
+No. 8 line of No.1 page
+No. 9 line of No.1 page
+...
+No. 70 line of No.1 page
+No. 71 line of No.1 page
+No. 72 line of No.1 page
+
+```
+
+2.redirect input from file
+```
+$ ./selpg -s 1 -e 1 < input_file
+No. 1 line of No.1 page
+No. 2 line of No.1 page
+No. 3 line of No.1 page
+No. 4 line of No.1 page
+No. 5 line of No.1 page
+No. 6 line of No.1 page
+No. 7 line of No.1 page
+No. 8 line of No.1 page
+No. 9 line of No.1 page
+...
+No. 70 line of No.1 page
+No. 71 line of No.1 page
+No. 72 line of No.1 page
+```
+
+3.other command's output as selpg's input
+```
+$ cat input_file | ./selpg -s 10 -e 20
+
+No. 1 line of No.10 page
+No. 2 line of No.10 page
+No. 3 line of No.10 page
+No. 4 line of No.10 page
+No. 5 line of No.10 page
+No. 6 line of No.10 page
+...
+No. 50 line of No.16 page
+No. 51 line of No.16 page
+No. 52 line of No.16 page
+...
+No. 70 line of No.20 page
+No. 71 line of No.20 page
+No. 72 line of No.20 page
+```
+
+4.result redirect to a file
+```
+$ ./selpg -s 10 -e 20 input_file >output_file
+$
+```
+you can refer to the output_file to see the result
+
+5.use the output as other command's input
+```
+Donedengxiajuns-MacBook-Pro:selpg dengxiajun$ ./selpg -s 10 -e 20 input_file | cat -n
+     1
+        No. 1 line of No.10 page
+     2	No. 2 line of No.10 page
+     3	No. 3 line of No.10 page
+     4	No. 4 line of No.10 page
+     5	No. 5 line of No.10 page
+     ...
+   427	No. 67 line of No.15 page
+   428	No. 68 line of No.15 page
+   429	No. 69 line of No.15 page
+   430	No. 70 line of No.15 page
+   ...
+   790	No. 70 line of No.20 page
+   791	No. 71 line of No.20 page
+   792	No. 72 line of No.20 page
+```
+in command 'cat', flag '-n' can show the number of each line, thus the result is output by 'cat' command
+
+6.use pipe to command ‘cat’
+```
+$ ./selpg -s 1 -e 1 -d input_file input_file
+     1	No. 1 line of No.1 page
+     2	No. 2 line of No.1 page
+     3	No. 3 line of No.1 page
+     4	No. 4 line of No.1 page
+     5	No. 5 line of No.1 page
+     6	No. 6 line of No.1 page
+     7	No. 7 line of No.1 page
+     ...
+    70	No. 70 line of No.1 page
+    71	No. 71 line of No.1 page
+    72	No. 72 line of No.1 page
+```
+because the output result have line number, so it is output by 'cat' command.
+
+---
+### Other Useful links
+- https://studygolang.com/articles/4367  --use of bufio package
+- https://studygolang.com/articles/5024  --use of os package
