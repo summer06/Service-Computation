@@ -83,6 +83,7 @@ func process_input(args *selpg_args) {
   if err != nil {
     panic(err)
   }
+  cmd.Stdout = os.Stdout
   cur_page := 1
   //fix-length page method
   if !args.page_type {
