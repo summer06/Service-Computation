@@ -1,9 +1,9 @@
 package main
 
 import (
-  "fmt"
+	"webServer/server"
 )
 
 func main() {
-  fmt.Println("hello world")
+	server.Serve()
 }
