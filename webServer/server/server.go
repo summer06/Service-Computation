@@ -5,10 +5,10 @@ import (
 	"webServer/server/mux"
 )
 
-func Serve() {
+func Serve(port string) {
 	server := http.Server{
-		Addr:    ":8000",
-		Handler: &mux.MyHandler{},
+		Addr:    ":" + port,
+		Handler: mux.Mux(),
 	}
 	server.ListenAndServe()
 }

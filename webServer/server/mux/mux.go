@@ -6,10 +6,10 @@ import (
 )
 
 //use a map to record the information of routers
-var mux map[string]func(http.ResponseWriter, *http.Request)
+// var mux map[string]func(http.ResponseWriter, *http.Request)
 
 //a struct that implement ServeHTTP function int the interface
-type MyHandler struct{}
+// type MyHandler struct{}
 
 //main page handler
 func hello(w http.ResponseWriter, r *http.Request) {
@@ -27,17 +27,24 @@ func name(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (*MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	mux = make(map[string]func(http.ResponseWriter, *http.Request))
-	//add router information and its handler
-	mux["/"] = hello
-	mux["/name"] = name
-	//return handler according to the path
-	h, ok := mux[r.URL.Path]
-	if ok {
-		h(w, r)
-		return
-	}
+// func (*MyHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+// 	mux = make(map[string]func(http.ResponseWriter, *http.Request))
+// 	//add router information and its handler
+// 	mux["/"] = hello
+// 	mux["/name"] = name
+// 	//return handler according to the path
+// 	h, ok := mux[r.URL.Path]
+// 	if ok {
+// 		h(w, r)
+// 		return
+// 	}
+//
+// 	io.WriteString(w, "My Server: "+r.URL.String())
+// }
 
-	io.WriteString(w, "My Server: "+r.URL.String())
+func Mux() *http.ServeMux {
+	m := http.NewServeMux()
+	m.HandleFunc("/", hello)
+	m.HandleFunc("/name", name)
+	return m
 }
