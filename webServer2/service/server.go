@@ -44,6 +44,5 @@ func inition(n *negroni.Negroni, mx *mux.Router, formatter *render.Render) {
 	mx.HandleFunc("/register", registerHandler(formatter)).Methods("GET")
 	mx.HandleFunc("/information", informationHandler(formatter)).Methods("POST")
 	mx.PathPrefix("/static").Handler(http.StripPrefix("/static", http.FileServer(http.Dir(webRoot+"/dynamic/"))))
-	// mx.PathPrefix("/").Handler(http.FileServer(http.Dir(webRoot + "/dynamic/")))
 	mx.PathPrefix("/").HandlerFunc(router.NotFound)
 }
