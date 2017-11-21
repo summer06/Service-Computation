@@ -14,5 +14,4 @@
 #### 效果展示
 
 1. 支持静态文件访问
-
-![静态文件访问][https://github.com/summer06/Service-Computation/blob/master/webServer2/picture/%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E8%AE%BF%E9%97%AE.png]
+![静态文件访问][picture/静态文件访问.png]
